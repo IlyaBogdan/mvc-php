@@ -2,7 +2,11 @@
 
 namespace kernel;
 
-abstract class Controller {
+/**
+ * Base Controller class
+ */
+abstract class Controller 
+{
     protected function view($view, $data = [])
     {
         extract($data);

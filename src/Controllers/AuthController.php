@@ -3,10 +3,10 @@
 namespace Controllers;
 
 use kernel\Controller;
+use Models\User;
 
 class AuthController extends Controller
 {
-
     public function loginPage()
     {
         $this->view('login', ['title' => 'Login']);
@@ -28,6 +28,11 @@ class AuthController extends Controller
 
     public function registerAction()
     {
-        echo(json_encode(['redirect' => '/']));
+        $data = json_decode(file_get_contents('php://input'), true);
+        $password = md5($data['password']);
+        $user = User::create([
+            'email' => $data['email'],
+            'password' => $password
+        ]);
     }
 }

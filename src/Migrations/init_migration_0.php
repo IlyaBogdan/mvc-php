@@ -4,7 +4,7 @@ namespace Migrations;
 
 use kernel\Migration;
 
-class init_migration extends Migration 
+class init_migration_0 extends Migration 
 {
     public function up(): void
     {
