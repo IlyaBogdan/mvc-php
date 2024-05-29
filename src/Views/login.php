@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="form" action="/login" method="POST">
+        <form class="form" id="login-form">
             <div class="form__title">Login</div>
 
             <div class="form__fields">
@@ -25,6 +25,7 @@
         </form>
     </div>
 
+    <script src="/assets/js/main.js"></script>
     <script src="/assets/js/login.js"></script>
 </body>
 </html>

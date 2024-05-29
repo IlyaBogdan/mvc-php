@@ -61,7 +61,7 @@ abstract class Model
         $values = substr($values, 0, -2) . ')';
         $query .= $columns . $values;
 
-        $db = new DB();
+        global $db;
         $db->query($query);
 
         return $this;
@@ -70,7 +70,7 @@ abstract class Model
     final public function all()
     {
         $query = "SELECT * FROM `{$this->table}`";
-        $db = new DB();
+        global $db;
         $sth = $db->prepare($query);
         $sth->execute();
 
@@ -83,7 +83,7 @@ abstract class Model
         $localValue = $this->$localKey;
         $query = "SELECT * FROM `{$relatedTableName}` WHERE `{$foreignKey}` = $localValue";
 
-        $db = new DB();
+        global $db;
         $result = $db->query($query);
         return $result[0];
     }
@@ -94,7 +94,7 @@ abstract class Model
         $localValue = $this->$localKey;
         $query = "SELECT * FROM `{$relatedTableName}` WHERE `{$foreignKey}` = $localValue";
 
-        $db = new DB();
+        global $db;
         $sth = $db->prepare($query);
         $sth->execute();
 

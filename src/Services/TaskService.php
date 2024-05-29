@@ -2,9 +2,7 @@
 
 namespace Services;
 
-use kernel\Service;
-
-class TaskService extends Service
+class TaskService
 {
 
     public function createList()

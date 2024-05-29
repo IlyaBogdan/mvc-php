@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        
+        <?= var_dump($_SESSION) ?>
     </div>
     <script src="/assets/js/toDoList.js"></script>
 </body>

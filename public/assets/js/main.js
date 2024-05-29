@@ -7,3 +7,13 @@ const collectDataFromForm = (formId) => {
 
     return data;
 }
+
+const logout = () => {
+    return fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+      .then(response => window.location.href = response.redirect);
+}

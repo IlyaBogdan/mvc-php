@@ -28,6 +28,6 @@ form.addEventListener('submit', (e) => {
     if (validateData(data)) {
         const { email, password } = data;
         register(email, password)
-            //.then(response => window.location.href = response.redirect);
+            .then(response => window.location.href = response.redirect);
     } 
 })
