@@ -24,5 +24,7 @@
             <button class="form__submit">Submit</button>
         </form>
     </div>
+
+    <script src="/assets/js/login.js"></script>
 </body>
 </html>

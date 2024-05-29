@@ -9,5 +9,6 @@
     <div class="container">
         
     </div>
+    <script src="/assets/js/toDoList.js"></script>
 </body>
 </html>

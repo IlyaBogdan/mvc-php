@@ -9,7 +9,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        $this->view('login', ['title' => 'Main Page']);
+        $this->view('main_page', ['title' => 'Main Page']);
     }
 
     public function createList()

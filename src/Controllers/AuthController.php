@@ -28,6 +28,6 @@ class AuthController extends Controller
 
     public function registerAction()
     {
-
+        echo(json_encode(['redirect' => '/']));
     }
 }

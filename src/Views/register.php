@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="form" action="/register" method="POST">
+        <form id="register-form" class="form">
             <div class="form__title">Register</div>
 
             <div class="form__fields">
@@ -29,5 +29,8 @@
             <button class="form__submit">Submit</button>
         </form>
     </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/register.js"></script>
 </body>
 </html>
