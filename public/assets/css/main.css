@@ -1,7 +1,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 500px;
     padding: 20px;
     border: 1px solid black;
     border-radius: 20px;
@@ -22,7 +22,7 @@
 .task {
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 400px;
     padding: 10px 0;
     border-bottom: 1px solid black;
 }
@@ -35,24 +35,20 @@
     font-size: 20px;
 }
 
-.task .task__state {
-
-}
-
 .task-form {
     display: flex;
     padding: 10px 0;
 }
 
 .task-form .task-form__input {
-    width: 200px;
+    width: 300px;
 }
 
 .task-form .task-form__input input {
     font-size: 16px;
     padding: 5px 10px;
     border-radius: 10px; 
-    width: 150px;
+    width: 250px;
 }
 
 .task-form .task-form__input label {

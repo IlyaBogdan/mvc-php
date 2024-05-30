@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use kernel\Controller;
+use Models\Task;
 use Models\User;
 use Services\TaskService;
 
@@ -28,11 +29,21 @@ class TaskController extends Controller
 
     public function createTask()
     {
-
+        header('Content-Type: application/json');
+        $data = json_decode(file_get_contents('php://input'), true);
+        $task = Task::create($data);
+        
+        echo json_encode($task->__serialize());
     }
 
-    public function taskCompleted()
+    public function taskCompleted(int $listId, int $taskId)
     {
-        
+        header('Content-Type: application/json');
+        $data = json_decode(file_get_contents('php://input'), true);
+        $task = Task::find($taskId);
+        $task->completed = $data['completed'];
+        $task->save();
+
+        echo json_encode($task->__serialize());
     }
 }

@@ -19,13 +19,18 @@ class Task {
         this.title = title;
         this.completed = data.completed ?? false;
         this.node = taskTemplate.content.cloneNode(true);
+
+        this.titleElement = this.node.querySelector('.task__title');
+        this.stateInput = this.node.querySelector('.task__state input');
     }
 
     render(parentNode) {
-        this.node.querySelector('.task__title').innerText = this.title;
-        this.node.querySelector('.task__state input').checked = this.completed;
+        this.titleElement.innerText = this.title;
+        this.stateInput.checked = this.completed;
 
-        this.node.querySelector('.task__state input').addEventListener('change', (e) => {
+        if (this.completed) this.titleElement.style.textDecoration = 'line-through';
+
+        this.stateInput.addEventListener('change', (e) => {
             const checked = e.target.checked;
             this.changeState(checked);
         })
@@ -40,7 +45,8 @@ class Task {
             body: JSON.stringify({ completed: state })
         }).then(response => response.json())
           .then((data) => {
-            //
+            if (data.completed) this.titleElement.style.textDecoration = 'line-through';
+            else this.titleElement.style.textDecoration = 'none';
         });
     }
 }
@@ -63,11 +69,11 @@ class TaskList {
         this.tasks.forEach(task => {
             task.render(this.node.querySelector('.list__tasks'));
         });
-        this.node.querySelector('#addTaskSubmit').addEventListener('click', () => { this.addTask() });
+        this.node.querySelector('#addTaskSubmit').addEventListener('click', (e) => { this.addTask(e) });
         listsAll.append(this.node);
     }
 
-    addTask() {
+    addTask(e) {
         const title = this.titleInput.value;
         const data = { task_list_id: this.id, title, completed: false };
 
@@ -76,8 +82,12 @@ class TaskList {
             body: JSON.stringify(data)
         }).then(response => response.json())
           .then((data) => {
-            this.tasks.push(new Task(data));
-            this.render();
+            const newTask = new Task(data);
+            this.tasks.push(newTask);
+            const listContainer = e.target.closest(".list");
+            const tasksContainer = listContainer.querySelector('.list__tasks');
+            newTask.render(tasksContainer);
+            this.titleInput.value = '';
         });
     }
 }

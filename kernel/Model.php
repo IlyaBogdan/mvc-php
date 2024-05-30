@@ -65,25 +65,60 @@ abstract class Model
 
     final public function save()
     {
+        if ($this->id) $query = $this->updateStatement();
+        else $query = $this->insertStatement();
+
+        global $db;
+        $db->query($query);
+
+        return $this;
+    }
+
+    final protected function insertStatement(): string
+    {
         $table = self::tableName();
         $query = "INSERT INTO `{$table}` ";
-        $values = array_values($this->attributes);
         $columns = "(";
         $values = " VALUES (";
         foreach ($this->attributes as $key => $value) 
         {
             $columns .= "`{$key}`, ";
             if (is_string($value)) $values .= "'{$value}', ";
+            else if (is_bool($value)) {
+                $value = (int) $value;
+                $values .= "{$value}, ";
+            }
             else $values .= "{$value}, ";
         }
         $columns = substr($columns, 0, -2) . ')';
         $values = substr($values, 0, -2) . ')';
         $query .= $columns . $values;
 
-        global $db;
-        $db->query($query);
+        return $query;
+    }
 
-        return $this;
+    final protected function updateStatement(): string
+    {
+        $table = self::tableName();
+        $query = "UPDATE `{$table}` SET ";
+        $params = '';
+        foreach ($this->attributes as $key => $value) 
+        {
+            $params .= "`{$key}` = ";
+            if (is_string($value)) $params .= "'{$value}', ";
+            else if (is_bool($value)) {
+                $value = (int) $value;
+                $params .= "{$value}, ";
+            }
+            else $params .= "{$value}, ";
+        }
+
+        
+        $params = substr($params, 0, -2) . ' ';
+        $params .= "WHERE `id` = " . $this->id;
+        $query .= $params;
+
+        return $query;
     }
 
     final public function all()
