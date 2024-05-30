@@ -92,6 +92,38 @@ class TaskList {
     }
 }
 
+const newListForm = document.querySelector('.newList-form')
+const addListBtn = document.querySelector('#newListAdd');
+const closeFromBtn = document.querySelector('#newListCancel');
+const initFormBtn = document.querySelector('#newListOpenForm')
+
+initFormBtn.addEventListener('click', () => {
+    newListForm.style.display = 'flex';
+    initFormBtn.style.display = 'none';
+});
+
+closeFromBtn.addEventListener('click', () => {
+    newListForm.style.display = 'none';
+    initFormBtn.style.display = 'block';
+});
+
+addListBtn.addEventListener('click', () => {
+    const user_id = newListForm.querySelector('input[name="user_id"]').value;
+    const title = newListForm.querySelector('input[name="title"]').value;
+
+    fetch(`/list`, {
+        method: 'POST',
+        body: JSON.stringify({ user_id, title })
+    }).then(response => response.json())
+      .then((data) => {
+        const list = new TaskList(data);
+        lists.push(list);
+        newListForm.querySelector('input[name="title"]').value = '';
+        newListForm.style.display = 'none';
+        initFormBtn.style.display = 'block';
+    });
+});
+
 window.onload = () => {
     const body = document.querySelector('body');
     lists = JSON.parse(body.getAttribute('data-lists'));

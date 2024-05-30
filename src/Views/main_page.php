@@ -23,6 +23,23 @@
     
     <div class="container">
         <div id="userLists"></div>
+        <div id="newList">
+            <div class="newList-form">
+                <div class="newList-form__title">Create new Task List</div>
+                <div class="newList-form__inputs">
+                    <label for="title">Title</label>
+                    <input type="text" name="title">
+                    <input type="number" name="user_id" hidden value="<?= $_SESSION['user_id'] ?>">
+                </div>
+                <div class="newList-form__buttons">
+                    <button id="newListAdd" class="btn submit">Submit</button>
+                    <button id="newListCancel" class="btn cancel">Cancel</button>
+                </div>
+            </div>
+            <div>
+                <button id="newListOpenForm" class="btn primary">New List</button>
+            </div>
+        </div>
     </div>
 
     <template id="list">

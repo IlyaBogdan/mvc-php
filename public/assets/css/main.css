@@ -5,6 +5,7 @@
     padding: 20px;
     border: 1px solid black;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .list .list__title {
@@ -58,4 +59,37 @@
 
 .task-form button {
     margin-top: 24px;
+}
+
+#newList {
+    display: flex;
+    width: 400px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+#newList .newList-form {
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+#newList .newList-form .newList-form__title {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#newList .newList-form .newList-form__inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+#newList .newList-form .newList-form__inputs input {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 10px; 
 }
