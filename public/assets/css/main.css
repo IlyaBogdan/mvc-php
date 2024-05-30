@@ -1,0 +1,65 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.list .list__title {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 10px 0px;
+}
+
+.list .list__tasks {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+}
+
+.task:last-child {
+    border-bottom: none;
+}
+
+.task .task__title {
+    font-size: 20px;
+}
+
+.task .task__state {
+
+}
+
+.task-form {
+    display: flex;
+    padding: 10px 0;
+}
+
+.task-form .task-form__input {
+    width: 200px;
+}
+
+.task-form .task-form__input input {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 10px; 
+    width: 150px;
+}
+
+.task-form .task-form__input label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.task-form button {
+    margin-top: 24px;
+}

@@ -2,3 +2,37 @@
 .container {
     display: flex;
 }
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.btn.primary {
+    background-color: rgb(65, 65, 243);
+}
+
+.btn.primary:hover {
+    background-color: rgb(21, 21, 238);
+}
+
+.btn.submit {
+    background-color: green;
+}
+
+.btn.submit:hover {
+    background-color: rgb(9, 220, 9);
+}
+
+.btn.cancel {
+    background-color: rgb(189, 13, 13);
+}
+
+.btn.cancel:hover {
+    background-color: rgb(237, 66, 66);
+}

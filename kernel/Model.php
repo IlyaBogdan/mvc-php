@@ -29,6 +29,25 @@ abstract class Model
         return isset($this->attributes[$name]) ? $this->attributes[$name] : null;
     }
 
+    public function __serialize(): array
+    {
+        $result = [];
+        foreach ($this->attributes as $key => $value)
+            if (is_int($key)) continue;
+            else $result[$key] = $value;
+        return $result;
+    }
+
+    final public static function find(int $id): static
+    {
+        global $db;
+        $table = static::tableName();
+        $stmt = $db->prepare("SELECT * FROM `{$table}` WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return new static($result);
+    }
+
     final public static function tableName(): string
     {
         $exploded = explode('\\', static::class);
@@ -98,7 +117,7 @@ abstract class Model
         $sth = $db->prepare($query);
         $sth->execute();
 
-        return $sth->fetchAll();
+        return array_map(fn($data) => new $related($data), $sth->fetchAll());
     }
 
     final protected function fill(array $attributes): void

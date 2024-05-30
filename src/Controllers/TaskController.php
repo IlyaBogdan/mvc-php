@@ -3,13 +3,22 @@
 namespace Controllers;
 
 use kernel\Controller;
+use Models\User;
+use Services\TaskService;
 
 class TaskController extends Controller
 {
+    private TaskService $taskService;
+
+    public function __construct()
+    {
+        $this->taskService = new TaskService();
+    }
 
     public function index()
     {
-        $this->view('main_page', ['title' => 'Main Page']);
+        $user = User::find($_SESSION['user_id']);
+        $this->view('main_page', ['title' => 'Main Page', 'lists' => $user->taskLists()]);
     }
 
     public function createList()
